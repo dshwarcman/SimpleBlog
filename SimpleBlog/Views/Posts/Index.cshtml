@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+<div>
+    <h1>
+        Post Index
+    </h1>
+
+    <p>
+
+        <a href="@Url.RouteUrl("login")">Click Here</a> to Login!
+    </p>
+
+    <p>
+        @Html.RouteLink("Click here", "login") to Login!
+    </p>
+</div>
+</body>
+</html>
