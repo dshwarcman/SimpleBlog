@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using SimpleBlog.ViewModels;
+using System.Web.Mvc;
 
 namespace SimpleBlog.Controllers
 {
@@ -6,7 +7,24 @@ namespace SimpleBlog.Controllers
     {
         public ActionResult Login()
         {
-            return View();
+            return View(new AuthLogin()
+            {
+
+            });
+        }
+        [HttpPost]
+        public ActionResult Login(AuthLogin form)
+        {
+            if (!ModelState.IsValid)
+                return View(form);
+
+            if (form.Username != "rainbow dash")
+            {
+                ModelState.AddModelError("Usermname", "Usename Incorrect");
+                return View(form);
+            }
+
+            return Content("the form is valid!");
         }
     }
 }
