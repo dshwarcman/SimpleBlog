@@ -1,5 +1,6 @@
 ﻿using SimpleBlog.ViewModels;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace SimpleBlog.Controllers
 {
@@ -13,18 +14,23 @@ namespace SimpleBlog.Controllers
             });
         }
         [HttpPost]
-        public ActionResult Login(AuthLogin form)
+        public ActionResult Login(AuthLogin form, string returnUrl)
         {
             if (!ModelState.IsValid)
                 return View(form);
 
-            if (form.Username != "rainbow dash")
-            {
-                ModelState.AddModelError("Usermname", "Usename Incorrect");
-                return View(form);
-            }
+            FormsAuthentication.SetAuthCookie(form.Username, true);
 
-            return Content("the form is valid!");
+            if(!string.IsNullOrWhiteSpace(returnUrl))
+                return Redirect(returnUrl);
+
+            return RedirectToRoute("home");
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToRoute("home");
         }
     }
 }
