@@ -1,18 +1,17 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    ViewBag.Title = "Posts";
+}   
+@section Scripts
+{
+    <script>
+        (function () {
+            var txt = "Some text from script";
+            return txt;
+        })()
+    </script>
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>View</title>
-</head>
-<body>
-<div>
-    <h1>
+<h1>
         Post Index
     </h1>
 
@@ -21,9 +20,8 @@
         <a href="@Url.RouteUrl("login")">Click Here</a> to Login!
     </p>
 
-    <p>
-        @Html.RouteLink("Click here", "login") to Login!
-    </p>
-</div>
-</body>
-</html>
+<p>
+    @Html.RouteLink("Click here", "login") to Login!
+</p>
+
+
